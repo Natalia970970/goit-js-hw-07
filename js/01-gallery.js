@@ -30,23 +30,21 @@ gallery.addEventListener('click', (e) => {
     const img = e.target.closest('img');
     const currentImg = img.dataset.source;
     console.log(img.dataset.source);
-    viewItem();
+    viewItem(currentImg);
 });
 
 const viewItem = (currentImg) => {
     const instance = basicLightbox.create(`
-    <div class="modal">
-        ${currentImg}
-    </div>
+    <img src = "${currentImg}"/>
     `)
 
-    instance.show()
+    instance.show();
 
-
-    console.log(currentImg)
+    document.addEventListener("keyup", (e) => {
+        if(e.key === "Escape"){
+        instance.close();
+        }   
+    });
 };
 
 render();
-
-
-
